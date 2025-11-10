@@ -1,14 +1,14 @@
 package edu.pitt.cs;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import static org.junit.Assert.*;
-
-import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CatUnitTest {
@@ -27,11 +27,15 @@ public class CatUnitTest {
 	public void setUp() throws Exception {
 		// INITIALIZE THE TEST FIXTURE
 
-		// Create a Cat with ID 1 and name "Jennyanydots", assign to c using a call to Cat.createInstance(InstanceType, int, String).
-		// Passing InstanceType.IMPL as the first parameter will create a real cat using your CatImpl implementation.
-		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
-		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
-		// TODO: Fill in
+		// Create a Cat with ID 1 and name "Jennyanydots", assign to c using a call to
+		// Cat.createInstance(InstanceType, int, String).
+		// Passing InstanceType.IMPL as the first parameter will create a real cat using
+		// your CatImpl implementation.
+		// Passing InstanceType.MOCK as the first parameter will create a mock cat using
+		// Mockito.
+		// Which type is the correct choice for this unit test? I'll leave it up to you.
+		// The answer is in the Unit Testing Part 2 lecture. :)
+		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
 	@After
@@ -52,7 +56,7 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetId() {
-		// TODO: Fill in
+		assertEquals(1, c.getId());
 	}
 
 	/**
@@ -66,7 +70,7 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetName() {
-		// TODO: Fill in
+		assertEquals("Jennyanydots", c.getName());
 	}
 
 	/**
@@ -80,7 +84,7 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetRented() {
-		// TODO: Fill in
+		assertFalse(c.getRented());
 	}
 
 	/**
@@ -94,7 +98,7 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testToString() {
-		// TODO: Fill in
+		assertEquals("ID 1. Jennyanydots", c.toString());
 	}
 
 	/**
@@ -109,7 +113,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testRentCat() {
-		// TODO: Fill in
+		c.rentCat();
+		assertTrue(c.getRented());
 	}
 
 	/**
@@ -125,7 +130,9 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testReturnCat() {
-		// TODO: Fill in
+		c.rentCat();
+		c.returnCat();
+		assertFalse(c.getRented());
 	}
 
 	/**
@@ -140,7 +147,9 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testRenameCat() {
-		// TODO: Fill in
+		c.renameCat("Garfield");
+		assertEquals("Garfield", c.getName());
+		assertEquals("ID 1. Garfield", c.toString());
 	}
 
 }
